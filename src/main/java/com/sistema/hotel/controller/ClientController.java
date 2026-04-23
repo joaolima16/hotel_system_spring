@@ -1,11 +1,9 @@
 package com.sistema.hotel.controller;
 
+import com.sistema.hotel.dto.client.ClientUpdateRequestDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.sistema.hotel.dto.client.ClientRequestDto;
 import com.sistema.hotel.dto.client.ClientResponseDto;
@@ -28,4 +26,15 @@ public class ClientController {
         ClientResponseDto responseDto = clientService.addClient(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<ClientResponseDto> getClient(@PathVariable Long id){
+        ClientResponseDto responseDto = clientService.getClient(id);
+        return ResponseEntity.ok(responseDto);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<ClientResponseDto> updateClient(@PathVariable Long id, @Valid @RequestBody ClientUpdateRequestDto requestDto){
+        ClientResponseDto responseDto = clientService.updateClient(id, requestDto);
+        return ResponseEntity.ok(responseDto);
+    }
+
 }
