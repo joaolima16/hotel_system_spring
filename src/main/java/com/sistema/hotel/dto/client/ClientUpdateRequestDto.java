@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public record ClientUpdateRequestDto(
         @NotBlank @Size(max = 150) String name,
-        @NotBlank
+        @Size(max = 20)
         String phone,
         @NotNull
         LocalDate birthDate) {

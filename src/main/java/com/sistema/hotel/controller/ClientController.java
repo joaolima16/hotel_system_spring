@@ -36,5 +36,4 @@ public class ClientController {
         ClientResponseDto responseDto = clientService.updateClient(id, requestDto);
         return ResponseEntity.ok(responseDto);
     }
-
 }

@@ -3,6 +3,7 @@ package com.sistema.hotel.service;
 import java.time.LocalDateTime;
 
 import com.sistema.hotel.dto.client.ClientUpdateRequestDto;
+import com.sistema.hotel.infra.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +23,7 @@ public class ClientService {
 
     public ClientResponseDto getClient(Long id) {
         Client client = clientRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Client not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("Client not found"));
         return toResponseDto(client);
     }
 
@@ -66,7 +67,7 @@ public class ClientService {
     @Transactional
     public ClientResponseDto updateClient(Long id, ClientUpdateRequestDto requestDto) {
         Client client = clientRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Client not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("Client not found"));
             client.setName(requestDto.name());
             client.setPhone(requestDto.phone());
             client.setBirthDate(requestDto.birthDate());
