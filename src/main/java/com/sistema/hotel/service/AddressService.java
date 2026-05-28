@@ -42,7 +42,6 @@ public class AddressService {
 
     private Address buildAddress(AddressRequestDto requestDto, Client client) {
         LocalDateTime now = LocalDateTime.now();
-
         return Address.builder()
             .client(client)
             .street(requestDto.street())
